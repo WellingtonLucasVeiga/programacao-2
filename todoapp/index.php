@@ -19,10 +19,15 @@
 
             $result = $mysqli->query($sql);
             echo "<table>";
-            while ($row = $result->fetch_assoc()) {            
-                echo "<tr>" 
-                        . "<td>".$row["idtodo"]."</td>"
-                        . "<td>".$row["description"]."</td>"
+            while ($row = $result->fetch_assoc()) {  
+                $rowid = "'_" . $row["idtodo"] . "'";       
+                echo "<tr id = "."_".$row["idtodo"].">"                        
+                        . "<td>"
+                        .$row["description"]
+                        . "</td>"
+                        . "<td>"
+                        . @"<button onclick=removerTodo($rowid)>Remover</button>"
+                        ."</td>"                                            
                     ."</tr>";
             }
             echo "</table>";
@@ -42,4 +47,5 @@
         <button type="submit">Enviar</button>
     </form> 
 </body>
+<script src="/js/index.js"></script>
 </html>
